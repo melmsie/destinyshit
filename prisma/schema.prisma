@@ -11,9 +11,9 @@ datasource db {
 }
 
 model User {
-  id       String @id
+  id       String  @id
   bungieID String?
-  commands Int   @default(0)
+  commands Int     @default(0)
   posts    Post[]
   votes    Vote[]
 }
