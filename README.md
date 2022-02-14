@@ -8,7 +8,7 @@ requires docker & node 17+
 
 Use [Docker 4.4.4](https://docs.docker.com/desktop/windows/release-notes/#docker-desktop-444)
 
-# Steps to build env
+## Steps to build env
 
 1. clone
 2. npm i
