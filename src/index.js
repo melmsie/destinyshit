@@ -12,7 +12,7 @@ client.once('ready', () => {
 const listeners = require(join(__dirname, 'listeners'));
 for (const listener of listeners) {
   try {
-    listeners[listener] = require(join(__dirname, 'listeners', listener)).handle;
+    listeners[listener] = require(join(__dirname, 'listeners', listener)).handle.bind(client);
     client.on(listener, listeners[listener]);
   } catch (e) {}
 }

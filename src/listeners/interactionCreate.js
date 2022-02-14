@@ -1,5 +1,6 @@
 const commands = require('../commands');
-exports.handle = async function (interaction) {
+exports.handle = async function (interaction, client) {
+  // console.log(this)
   if (interaction.isCommand()) { // Slash commands
     const { commandName } = interaction;
     if (!commands.includes(commandName)) {
@@ -7,7 +8,7 @@ exports.handle = async function (interaction) {
     }
 
     try {
-      await runCommand(commandName, interaction);
+      await runCommand(commandName, interaction, this);
     } catch (error) {
       interaction.reply(`There was an error: ${error}`);
     }
@@ -15,7 +16,7 @@ exports.handle = async function (interaction) {
     await interaction.reply(
       {
         embeds: [
-          { description: `You clicked on **${interaction.customId}** on a **${interaction.message.interaction.commandName}** post by **${interaction.message.interaction.user.username}**` }
+          { description: `You clicked **${interaction.customId}**` }
         ],
         ephemeral: true
       }
@@ -25,6 +26,6 @@ exports.handle = async function (interaction) {
   }
 };
 
-async function runCommand (command, interaction) {
-  require(`./../commands/${command}.js`).run(interaction);
+async function runCommand (command, interaction, client) {
+  require(`./../commands/${command}.js`).run(interaction, client);
 }
