@@ -6,7 +6,9 @@ requires docker & node 17+
 
 #### For Windows 11
 
-Use [Docker 4.4.4](https://docs.docker.com/desktop/windows/release-notes/#docker-desktop-444)
+~~Use [Docker 4.4.4](https://docs.docker.com/desktop/windows/release-notes/#docker-desktop-444)~~
+
+Ignore Kable, use WSL like a real homie
 
 ## Steps to build env
 
