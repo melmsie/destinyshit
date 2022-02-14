@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dbpush": "npx prisma db push",
+    "studio": "npx prisma studio",
     "start": "node src/index.js",
     "deploy": "node scripts/deploy-commands.js",
     "lint": "semistandard --fix",
