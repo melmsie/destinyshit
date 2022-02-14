@@ -2,7 +2,6 @@ const { Client } = require('discord.js');
 const { GatewayIntentBits } = require('discord-api-types/gateway/v9');
 const { join } = require('path');
 const { token } = require('../config.json');
-const interactionHandler = require('./listeners/interactionCreate');
 
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 

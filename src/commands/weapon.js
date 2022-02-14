@@ -14,15 +14,15 @@ module.exports = {
         components: [
           {
             type: 2,
-            label: 'Drip!',
+            label: 'Keep it',
             style: 3,
-            custom_id: 'drip'
+            custom_id: 'keep'
           },
           {
             type: 2,
-            label: 'Drop!',
+            label: 'Shard it',
             style: 2,
-            custom_id: 'drop'
+            custom_id: 'shard'
           }
         ]
 

@@ -5,7 +5,8 @@ module.exports = {
         {
           description: 'aaaa'
         }
-      ]
+      ],
+      ephemeral: true
     });
   }
 };
