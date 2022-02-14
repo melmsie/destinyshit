@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id
+  bungieID String?
+  commands Int   @default(0)
+  posts    Post[]
+  votes    Vote[]
+}
+
+model Post {
+  id    Int      @id @default(autoincrement())
+  image String?
+  votes Vote[]
+  type  PostType
+
+  user   User   @relation(fields: [userID], references: [id])
+  userID String
+}
+
+model Vote {
+  approve Boolean // Whether the vote is showing the user's approval or not
+  comment String? // Optional comment to make when voting
+
+  user   User   @relation(fields: [userID], references: [id])
+  userID String
+
+  post   Post @relation(fields: [postID], references: [id])
+  postID Int
+
+  @@id([userID, postID])
+}
+
+enum PostType {
+  WEAPON
+  FASHION
+}

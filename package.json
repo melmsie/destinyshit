@@ -20,12 +20,14 @@
   },
   "homepage": "https://github.com/melmsie/destinyshit#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.13.0-dev.1644753796.3ae6f3c",
+    "@discordjs/builders": "^0.13.0-dev.1644797188.0dfdb2c",
     "@discordjs/rest": "^0.3.0",
-    "discord-api-types": "^0.27.0",
-    "discord.js": "^14.0.0-dev.1644753821.3ae6f3c"
+    "@prisma/client": "^3.9.2",
+    "discord-api-types": "^0.27.1",
+    "discord.js": "^14.0.0-dev.1644797187.0dfdb2c"
   },
   "devDependencies": {
-    "eslint": "^8.9.0"
+    "eslint": "^8.9.0",
+    "prisma": "^3.9.2"
   }
 }
