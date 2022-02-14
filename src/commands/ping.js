@@ -1,5 +1,5 @@
 module.exports = {
-  async run(interaction) {
+  async run (interaction) {
     await interaction.reply({
       embeds: [
         {
@@ -8,4 +8,4 @@ module.exports = {
       ]
     });
   }
-}
+};
