@@ -5,6 +5,8 @@ const { clientId, guildId, token } = require('../config.json');
 
 const commands = [
 	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
+	new SlashCommandBuilder().setName('fashion').setDescription('Post a fashion pic to put up for opinions').addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your fashion').setRequired(true)),
+	new SlashCommandBuilder().setName('gun').setDescription('Post a gun roll pic to put up for opinions').addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your gun roll').setRequired(true)),
 ]
 	.map(command => command.toJSON());
 

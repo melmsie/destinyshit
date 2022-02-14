@@ -1,5 +1,11 @@
 module.exports = {
   async run(interaction) {
-    await interaction.reply('Pong!');
+    await interaction.reply({
+      embeds: [
+        {
+          description: 'aaaa'
+        }
+      ]
+    });
   }
 }
