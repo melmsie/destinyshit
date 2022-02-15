@@ -1,4 +1,4 @@
-const prisma = require('./../utils/prisma')
+const prisma = require('./../utils/prisma');
 module.exports = {
   async run (interaction, client) {
     const targetUser = interaction.options.resolved.users?.values()?.next()?.value || interaction.user;
