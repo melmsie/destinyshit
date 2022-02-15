@@ -31,6 +31,24 @@ exports.handle = async function (interaction, client) {
       }
     });
 
+    const postData = await prisma.post.findFirst({
+      where: {
+        id: Number(postID)
+      },
+      include: {
+        votes: true
+      }
+    });
+    if (postData.votes.filter(x=>x.userID === interaction.user.id)) {
+      interaction.reply({
+        embeds: [
+          { description: `You cannot vote on your own post STUPID` }
+        ],
+        ephemeral: true
+      });
+      return;
+    }
+
     if (voteData) {
       interaction.reply({
         embeds: [
@@ -52,7 +70,7 @@ exports.handle = async function (interaction, client) {
     await interaction.reply(
       {
         embeds: [
-          { description: `You voted on Post #${postID}` }
+          { description: `You voted on Post #${postID} by <@${postData.userID}>` }
         ],
         ephemeral: true
       }
