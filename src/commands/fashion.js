@@ -1,12 +1,23 @@
 const config = require('./../../config.json');
 module.exports = {
-  async run (interaction, client) {
+  async run (interaction, client, prisma) {
     const info = interaction.options.get('image');
     // console.log(client.rest)
-    const postLink = await interaction.member.guild.channels.resolve(config.fashionChannel).send({ // TODO: Put this channel in config somewhere
+    const url = interaction.__destiny_resolved.attachments[info.value].url; // TODO: Fix this once d.js merges the fix
+    const postData = await prisma.post.create({
+      data: {
+        userID: interaction.user.id,
+        type: 'FASHION',
+        image: url
+      }
+    });
+
+    const postLink = await interaction.member.guild.channels.resolve(config.fashionChannel).send({
       embeds: [
         {
-          image: { url: interaction.__destiny_resolved.attachments[info.value].url } // TODO: Fix this once d.js merges the fix
+          title: `Post #${postData.id} by ${interaction.user.username}`,
+          footer: { text: `Post #${postData.id} by ${interaction.user.username}` }, // Why doesn't this footer work wtf
+          image: { url: url }
         }
       ],
       components: [{
@@ -14,21 +25,20 @@ module.exports = {
         components: [
           {
             type: 2,
-            label: 'Drip!',
+            label: 'Drip',
             style: 3,
-            custom_id: 'drip'
+            custom_id: `vote-positive-${postData.id}`
           },
           {
             type: 2,
-            label: 'Drop!',
+            label: 'Drop',
             style: 2,
-            custom_id: 'drop'
+            custom_id: `vote-negative-${postData.id}`
           }
         ]
 
       }]
     });
-    console.log(postLink);
     await interaction.reply({
       embeds: [
         {

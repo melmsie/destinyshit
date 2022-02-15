@@ -1,12 +1,23 @@
 const config = require('./../../config.json');
 module.exports = {
-  async run (interaction, client) {
+  async run (interaction, client, prisma) {
     const info = interaction.options.get('image');
     // console.log(client.rest)
-    const postLink = await interaction.member.guild.channels.resolve(config.weaponChannel).send({ // TODO: Put this channel in config somewhere
+    const url = interaction.__destiny_resolved.attachments[info.value].url; // TODO: Fix this once d.js merges the fix
+    const postData = await prisma.post.create({
+      data: {
+        userID: interaction.user.id,
+        type: 'WEAPON',
+        image: url
+      }
+    });
+
+    const postLink = await interaction.member.guild.channels.resolve(config.weaponChannel).send({
       embeds: [
         {
-          image: { url: interaction.__destiny_resolved.attachments[info.value].url } // TODO: Fix this once d.js merges the fix
+          title: `Post #${postData.id} by ${interaction.user.username}`,
+          footer: { text: `Post #${postData.id} by ${interaction.user.username}` }, // Why doesn't this footer work wtf
+          image: { url: url }
         }
       ],
       components: [{
@@ -14,25 +25,24 @@ module.exports = {
         components: [
           {
             type: 2,
-            label: 'Keep',
+            label: 'Keep it',
             style: 3,
-            custom_id: 'keep'
+            custom_id: `vote-positive-${postData.id}`
           },
           {
             type: 2,
-            label: 'Shard',
+            label: 'Shard it',
             style: 2,
-            custom_id: 'shard'
+            custom_id: `vote-negative-${postData.id}`
           }
         ]
 
       }]
     });
-    console.log(postLink);
     await interaction.reply({
       embeds: [
         {
-          description: `Your weapon post is now live [here](https://canary.discord.com/channels/${postLink.guildId}/${postLink.channelId}/${postLink.id})!`
+          description: `Your fashion post is now live [here](https://canary.discord.com/channels/${postLink.guildId}/${postLink.channelId}/${postLink.id})!`
         }
       ],
       ephemeral: true
