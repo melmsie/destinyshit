@@ -1,32 +1,30 @@
-module.exports = { // TODO: set up optional user argument
+module.exports = {
   async run (interaction, client, prisma) {
-    const voteData = await prisma.vote.findMany({
-      where: {
-        userID: interaction.user.id
+    const targetUser = interaction.options.resolved.users?.values()?.next()?.value || interaction.user;
+    const userData = await prisma.user.findUnique({
+      where: { id: targetUser.id },
+      include: {
+        posts: true,
+        votes: true
       }
     });
-    const postData = await prisma.post.findMany({
-      where: {
-        userID: interaction.user.id
-      }
-    });
-    // const userData = await prisma.post.findFirst({
-    //   where: {
-    //     id: interaction.user.id
-    //   }
-    // })
+    
+    if (!userData) {
+      return interaction.reply({ content: 'This user has no data yet!', ephemeral: true });
+    }
+
     await interaction.reply({
       embeds: [
         {
-          title: `${interaction.user.username} data`,
+          title: `${targetUser.username}'s data`,
           fields: [
             {
               name: 'Votes',
-              value: voteData.length.toLocaleString()
+              value: userData.votes.length.toLocaleString()
             },
             {
               name: 'Posts',
-              value: postData.length.toLocaleString()
+              value: userData.posts.length.toLocaleString()
             }
           ]
         }

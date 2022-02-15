@@ -5,7 +5,7 @@ const { clientId, guildId, token } = require('../config.json');
 
 const commands = [
   new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
-  new SlashCommandBuilder().setName('user').setDescription('See user data'),
+  new SlashCommandBuilder().setName('user').setDescription('See user data').addUserOption(option => option.setName('target').setDescription('The user who you want to see data on').setRequired(false)),
   new SlashCommandBuilder().setName('fashion').setDescription('Post a fashion pic to put up for opinions').addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your fashion').setRequired(true)),
   new SlashCommandBuilder().setName('weapon').setDescription('Post a weapon roll pic to put up for opinions').addAttachmentOption(option => option.setName('image').setDescription('A screenshot of your weapon roll').setRequired(true))
 ]
