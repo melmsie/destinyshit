@@ -39,7 +39,8 @@ exports.handle = async function (interaction, client) {
         votes: true
       }
     });
-    if (postData.votes.filter(x=>x.userID === interaction.user.id)) {
+    
+    if (postData.userID === interaction.user.id) {
       interaction.reply({
         embeds: [
           { description: `You cannot vote on your own post STUPID` }
