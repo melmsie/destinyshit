@@ -23,7 +23,7 @@ Ignore Kable, use WSL like a real homie
 
 ## Things to add
 
-- [ ] Don't allow voting on your own post
+- [x] Don't allow voting on your own post (https://github.com/melmsie/destinyshit/commit/cfb5d168cec00792f26a2179bf36637375aa6df0)
 - [ ] Comments with Modals (waiting on dapi and d.js to implement)
 - [ ] Button to see results straight on the post
 - [ ] Overhaul user command to show more data including an overall score
