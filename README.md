@@ -27,3 +27,10 @@ Ignore Kable, use WSL like a real homie
 - [ ] Comments with Modals (waiting on dapi and d.js to implement)
 - [ ] Button to see results straight on the post
 - [ ] Overhaul user command to show more data including an overall score
+- [ ] Validate that an actual image was provided and not another file
+- [ ] Hook into Bungie Api
+  - [ ] Allow people to choose rolls to show off from their inventory
+  - [ ] Webhook or something when people earn seals or other hard to get achievements
+  - [ ] Fireteam creator/planner
+    - [ ] Schedule events and let Guardians sign up for slots
+    - [ ] When signing up, choose your class and loadout for others to see
