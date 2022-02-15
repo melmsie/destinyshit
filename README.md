@@ -19,3 +19,11 @@ Ignore Kable, use WSL like a real homie
 5. npm run deploy
 6. fill out `config.json` and `.env` files (examples given)
 7. npm run start
+
+
+## Things to add
+
+- [ ] Don't allow voting on your own post
+- [ ] Comments with Modals (waiting on dapi and d.js to implement)
+- [ ] Button to see results straight on the post
+- [ ] Overhaul user command to show more data including an overall score
