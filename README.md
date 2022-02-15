@@ -24,10 +24,10 @@ Ignore Kable, use WSL like a real homie
 ## Things to add
 
 - [x] ~~Don't allow voting on your own post~~ ([cfb5d16](https://github.com/melmsie/destinyshit/commit/cfb5d168cec00792f26a2179bf36637375aa6df0))
-- [ ] Comments with Modals (waiting on dapi and d.js to implement)
+- [ ] Comments with Modals (waiting on dapi and d.js to implement) 
 - [ ] Button to see results straight on the post
 - [ ] Overhaul user command to show more data including an overall score
-- [ ] Validate that an actual image was provided and not another file
+- [x] ~~Validate that an actual image was provided and not another file~~ ([036b2fb](https://github.com/melmsie/destinyshit/commit/036b2fbe9c3e0b2ad20e0730847871cad9106b50))
 - [ ] Hook into Bungie Api
   - [ ] Allow people to choose rolls to show off from their inventory
   - [ ] Webhook or something when people earn seals or other hard to get achievements
