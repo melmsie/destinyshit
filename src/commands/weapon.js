@@ -1,4 +1,6 @@
 const config = require('./../../config.json');
+const prisma = require('./../utils/prisma')
+const { PostType } = require('@prisma/client');
 module.exports = {
   async run (interaction, client, prisma) {
     const info = interaction.options.get('image');
@@ -7,7 +9,7 @@ module.exports = {
     const postData = await prisma.post.create({
       data: {
         userID: interaction.user.id,
-        type: 'WEAPON',
+        type: PostType.WEAPON,
         image: url
       }
     });

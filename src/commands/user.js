@@ -1,5 +1,6 @@
+const prisma = require('./../utils/prisma')
 module.exports = {
-  async run (interaction, client, prisma) {
+  async run (interaction, client) {
     const targetUser = interaction.options.resolved.users?.values()?.next()?.value || interaction.user;
     const userData = await prisma.user.findUnique({
       where: { id: targetUser.id },
@@ -8,7 +9,7 @@ module.exports = {
         votes: true
       }
     });
-    
+
     if (!userData) {
       return interaction.reply({ content: 'This user has no data yet!', ephemeral: true });
     }

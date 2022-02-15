@@ -1,5 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('./../utils/prisma')
 const commands = require('../commands');
 exports.handle = async function (interaction, client) {
   if (!interaction.user) return; // Why wouldn't an interaction have a user object?
@@ -70,5 +69,5 @@ exports.handle = async function (interaction, client) {
 };
 
 async function runCommand (command, interaction, client) {
-  require(`./../commands/${command}.js`).run(interaction, client, prisma);
+  require(`./../commands/${command}.js`).run(interaction, client);
 }

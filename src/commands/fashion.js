@@ -1,13 +1,15 @@
 const config = require('./../../config.json');
+const prisma = require('./../utils/prisma')
+const { PostType } = require('@prisma/client');
 module.exports = {
-  async run (interaction, client, prisma) {
+  async run (interaction, client) {
     const info = interaction.options.get('image');
     // console.log(client.rest)
     const url = interaction.__destiny_resolved.attachments[info.value].url; // TODO: Fix this once d.js merges the fix
     const postData = await prisma.post.create({
       data: {
         userID: interaction.user.id,
-        type: 'FASHION',
+        type: PostType.FASHION,
         image: url
       }
     });
