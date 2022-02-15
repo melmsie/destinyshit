@@ -1,10 +1,23 @@
 const config = require('./../../config.json');
 const prisma = require('./../utils/prisma');
+const functions = new (require('./../utils/functions'));
 const { PostType } = require('@prisma/client');
 const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
     const info = interaction.options.get('image');
+    const isImage = functions.validateImage(interaction.__destiny_resolved.attachments[info.value].filename);
+    if (!isImage) {
+      await interaction.reply({
+        embeds: [
+          {
+            description: `The file \`${interaction.__destiny_resolved.attachments[info.value].filename}\` is not an image, you're a bit dull aren't you`
+          }
+        ],
+        ephemeral: true
+      });
+      return;
+    }
     const url = interaction.__destiny_resolved.attachments[info.value].url; // TODO: Fix this once d.js merges the fix
     const postData = await prisma.post.create({
       data: {
@@ -51,3 +64,4 @@ module.exports = {
     });
   }
 };
+
