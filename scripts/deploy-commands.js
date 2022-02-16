@@ -11,30 +11,30 @@ const commands = [
     .setName('post')
     .setDescription('See results of a post')
     .addStringOption(option => option.setName('post')
-    .setDescription('The post you want to see')
-    .setAutocomplete(true)),
+      .setDescription('The post you want to see')
+      .setAutocomplete(true)),
   new SlashCommandBuilder()
     .setName('user')
     .setDescription('See user data')
     .addUserOption(option => option.setName('target')
-    .setDescription('The user who you want to see data on')
-    .setRequired(false)),
+      .setDescription('The user who you want to see data on')
+      .setRequired(false)),
   new SlashCommandBuilder()
     .setName('fashion')
     .setDescription('Post a fashion pic to put up for opinions')
     .addAttachmentOption(option => option.setName('image')
-    .setDescription('A screenshot of your fashion')
-    .setRequired(true))
+      .setDescription('A screenshot of your fashion')
+      .setRequired(true)),
     /* Learn interaction endpoints in command building (spent about an hour to no avail on simply requesting a string)
     .addStringOption(option => option.setName('Name')
     .setDescription('A name to describe your fashion')
     .setRequired(false))
-    */,
+    */
   new SlashCommandBuilder()
     .setName('weapon')
     .setDescription('Post a weapon roll pic to put up for opinions')
     .addAttachmentOption(option => option.setName('image')
-    .setDescription('A screenshot of your weapon roll').setRequired(true))
+      .setDescription('A screenshot of your weapon roll').setRequired(true))
 ]
   .map(command => command.toJSON());
 

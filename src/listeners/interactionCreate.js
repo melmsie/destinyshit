@@ -39,11 +39,11 @@ exports.handle = async function (interaction, client) {
         votes: true
       }
     });
-    
+
     if (postData.userID === interaction.user.id) {
       interaction.reply({
         embeds: [
-          { description: `You cannot vote on your own post STUPID` }
+          { description: 'You cannot vote on your own post STUPID' }
         ],
         ephemeral: true
       });
