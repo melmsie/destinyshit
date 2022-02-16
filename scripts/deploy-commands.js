@@ -24,11 +24,12 @@ const commands = [
     .setDescription('Post a fashion pic to put up for opinions')
     .addAttachmentOption(option => option.setName('image')
     .setDescription('A screenshot of your fashion')
-    .setRequired(true)),
+    .setRequired(true))
     /* Learn interaction endpoints in command building (spent about an hour to no avail on simply requesting a string)
-    .addStringOption(option => option.setName("Name"))
-    .setDescription('A name to describe your fashion'),
-    */
+    .addStringOption(option => option.setName('Name')
+    .setDescription('A name to describe your fashion')
+    .setRequired(false))
+    */,
   new SlashCommandBuilder()
     .setName('weapon')
     .setDescription('Post a weapon roll pic to put up for opinions')
