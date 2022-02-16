@@ -12,13 +12,13 @@ Ignore Kable, use WSL like a real homie
 
 ## Steps to build env
 
+
 1. clone
 2. npm i
 3. docker compose up
-4. (TEMP) edit `node_modules/discord.js/src/structures/ChatInputCommandInteraction.js` and put `this.__destiny_resolved = data.data.resolved;` on line 14
-5. npm run deploy
-6. fill out `config.json` and `.env` files (examples given)
-7. npm run start
+4. npm run deploy
+5. fill out `config.json` and `.env` files (examples given)
+6. npm run start
 
 
 ## Things to add

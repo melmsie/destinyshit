@@ -27,7 +27,7 @@
     "@discordjs/rest": "^0.3.0",
     "@prisma/client": "^3.9.2",
     "discord-api-types": "^0.27.1",
-    "discord.js": "^14.0.0-dev.1644797187.0dfdb2c"
+    "discord.js": "^14.0.0-dev.1645012998.7959a68"
   },
   "devDependencies": {
     "eslint": "^8.9.0",

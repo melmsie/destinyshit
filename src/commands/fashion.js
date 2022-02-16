@@ -5,25 +5,37 @@ const { PostType } = require('@prisma/client');
 const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
-    const info = interaction.options.get('image');
-    const isImage = functions.validateImage(interaction.__destiny_resolved.attachments[info.value].filename);
-    if (!isImage) {
+    const data = interaction.options.data[0];
+    if (!data) {
       await interaction.reply({
         embeds: [
           {
-            description: `The file \`${interaction.__destiny_resolved.attachments[info.value].filename}\` is not an image, you're a bit dull aren't you`
+            description: `No data? more like no bitches`
           }
         ],
         ephemeral: true
       });
       return;
     }
-    const url = interaction.__destiny_resolved.attachments[info.value].url; // TODO: Fix this once d.js merges the fix
+
+    const isImage = functions.validateImage(data.attachment.url, data.attachment.contentType);
+    if (!isImage) {
+      await interaction.reply({
+        embeds: [
+          {
+            description: `The file \`${data.attachment.name}\` is not an image, you're a bit dull aren't you`
+          }
+        ],
+        ephemeral: true
+      });
+      return;
+    }
+    
     const postData = await prisma.post.create({
       data: {
         userID: interaction.user.id,
         type: PostType.FASHION,
-        image: url
+        image: data.attachment.url
       }
     });
 
@@ -32,7 +44,7 @@ module.exports = {
     const postLink = await interaction.member.guild.channels.resolve(config.fashionChannel).send({
       embeds: [
         embed
-          .setImage(url)
+          .setImage(data.attachment.url)
           .setFooter({ text: `Post #${postData.id} by ${interaction.user.username}` })
       ],
       components: [{
