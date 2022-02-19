@@ -1,6 +1,6 @@
 const config = require('./../../config.json');
 const prisma = require('./../utils/prisma');
-const functions = new (require('./../utils/functions'));
+const functions = new (require('./../utils/functions'))();
 const { PostType } = require('@prisma/client');
 const { Embed } = require('@discordjs/builders');
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
       await interaction.reply({
         embeds: [
           {
-            description: `No data? more like no bitches`
+            description: 'No data? more like no bitches'
           }
         ],
         ephemeral: true
@@ -30,7 +30,7 @@ module.exports = {
       });
       return;
     }
-    
+
     const postData = await prisma.post.create({
       data: {
         userID: interaction.user.id,
@@ -76,4 +76,3 @@ module.exports = {
     });
   }
 };
-

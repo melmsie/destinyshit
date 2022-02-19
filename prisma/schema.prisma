@@ -10,32 +10,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// A user's data
 model User {
-  id       String  @id
+  id       String    @id
   bungieID String?
-  commands Int     @default(0)
+  commands Int       @default(0)
   posts    Post[]
   votes    Vote[]
+  comments Comment[]
 }
 
+// Represents a post made
+// Can be any type of post, using PostType enum
 model Post {
-  id    Int      @id @default(autoincrement())
-  image String?
-  votes Vote[]
-  type  PostType
+  id          Int       @id @default(autoincrement())
+  description String?
+  image       String?
+  votes       Vote[]
+  comments    Comment[]
+  type        PostType
 
-  user   User   @relation(fields: [userID], references: [id])
+  user   User   @relation(fields: [userID], references: [id], onDelete: Cascade)
   userID String
 }
 
+// Represents a vote on any post
+// Shows whether the user approved of the post
 model Vote {
-  approve Boolean // Whether the vote is showing the user's approval or not
-  comment String? // Optional comment to make when voting
+  approve Boolean
 
-  user   User   @relation(fields: [userID], references: [id])
+  user   User   @relation(fields: [userID], references: [id], onDelete: SetNull)
   userID String
 
-  post   Post @relation(fields: [postID], references: [id])
+  post   Post @relation(fields: [postID], references: [id], onDelete: Cascade)
+  postID Int
+
+  @@id([userID, postID])
+}
+
+// Represents a comment on any post
+// The string value is pure user input
+// public can be set to true of the comment author doesn't want to be anon
+model Comment {
+  value  String
+  public Boolean @default(false)
+  user   User    @relation(fields: [userID], references: [id], onDelete: SetNull)
+  userID String
+
+  post   Post @relation(fields: [postID], references: [id], onDelete: Cascade)
   postID Int
 
   @@id([userID, postID])
