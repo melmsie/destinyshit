@@ -1,5 +1,6 @@
 const prisma = require('./../utils/prisma');
 const commands = require('../commands');
+const logger = require('pino')();
 exports.handle = async function (interaction, client) {
   if (!interaction.user) return; // Why wouldn't an interaction have a user object?
   await prisma.user.upsert({
@@ -18,7 +19,7 @@ exports.handle = async function (interaction, client) {
       await runCommand(commandName, interaction, this);
     } catch (error) {
       interaction.reply(`There was an error: ${error}`);
-      console.error(error.stack);
+      logger.error(error.stack, `User: ${interaction.user.username} (${interaction.user.id}) on ${commandName}`);
     }
   } else if (interaction.isButton()) { // TYPE: Buttons
     require('./../handlers/button/index').handle(interaction, client);

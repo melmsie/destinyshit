@@ -52,6 +52,30 @@ module.exports = class MiscFunctions {
   }
 
   /**
+   * @param {Array} votes The array of votes to calculate a sentiment from
+   * @returns {String} Will return a general vote sentiment
+   */
+  sentiment (votes) {
+    if (!votes || votes.length < 1) return 'No votes yet!';
+    const numberGrade = Math.round((votes.filter(x => x.approve).length / votes.length) * 100);
+    let sentiment = '';
+    if (numberGrade >= 90) {
+      sentiment = 'overly positive';
+    } else if (numberGrade >= 75) {
+      sentiment = 'mostly positive';
+    } else if (numberGrade >= 50) {
+      sentiment = 'usually positive';
+    } else if (numberGrade >= 25) {
+      sentiment = 'usually negative';
+    } else if (numberGrade >= 10) {
+      sentiment = 'mostly negative';
+    } else {
+      sentiment = 'overly negative';
+    }
+    return sentiment;
+  }
+
+  /**
    * Creates an array of strings from a given string, each string being at most 2000 characters/the given limit
    * @param {String} text The text to create an array of "pages" from
    * @param {Number} [limit=2000] The limit of characters for a page, defaults to `2000`
