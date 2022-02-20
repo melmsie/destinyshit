@@ -18,13 +18,16 @@ model User {
   posts    Post[]
   votes    Vote[]
   comments Comment[]
+  settings Json      @default("{\"commentAlerts\": true}")
 }
 
 // Represents a post made
 // Can be any type of post, using PostType enum
 model Post {
   id          Int       @id @default(autoincrement())
+  timestamp   DateTime  @default("1970-01-01T00:00:00.000Z")
   description String?
+  title       String?
   image       String?
   votes       Vote[]
   comments    Comment[]
@@ -37,7 +40,8 @@ model Post {
 // Represents a vote on any post
 // Shows whether the user approved of the post
 model Vote {
-  approve Boolean
+  approve   Boolean
+  timestamp DateTime @default("1970-01-01T00:00:00.000Z")
 
   user   User   @relation(fields: [userID], references: [id], onDelete: SetNull)
   userID String
@@ -50,11 +54,12 @@ model Vote {
 
 // Represents a comment on any post
 // The string value is pure user input
-// public can be set to true of the comment author doesn't want to be anon
+// publicComment can be set to false of the comment author doesn't want to be seen
 model Comment {
-  value  String
-  public Boolean @default(false)
-  user   User    @relation(fields: [userID], references: [id], onDelete: SetNull)
+  value     String
+  timestamp DateTime @default("1970-01-01T00:00:00.000Z")
+
+  user   User   @relation(fields: [userID], references: [id], onDelete: SetNull)
   userID String
 
   post   Post @relation(fields: [postID], references: [id], onDelete: Cascade)

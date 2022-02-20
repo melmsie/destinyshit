@@ -6,6 +6,8 @@ const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
     const data = interaction.options.data[0];
+    const title = interaction.options.data[1].value.substr(0, 200);
+    const desc = interaction.options.data[2].value;
     if (!data) {
       await interaction.reply({
         embeds: [
@@ -35,11 +37,22 @@ module.exports = {
       data: {
         userID: interaction.user.id,
         type: PostType.WEAPON,
-        image: data.attachment.url
+        image: data.attachment.url,
+        timestamp: new Date(Date.now()),
+        description: desc,
+        title: title
       }
     });
 
     const embed = new Embed();
+
+    if (title) {
+      embed.setTitle(title);
+    }
+
+    if (desc) {
+      embed.setDescription(desc);
+    }
 
     const postLink = await interaction.member.guild.channels.resolve(config.weaponChannel).send({
       embeds: [
