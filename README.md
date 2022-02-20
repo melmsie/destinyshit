@@ -23,17 +23,18 @@ Ignore Kable, use WSL like a real homie
 
 ## Things to add
 
-- [x] ~~Don't allow voting on your own post~~ ([cfb5d16](https://github.com/melmsie/destinyshit/commit/cfb5d168cec00792f26a2179bf36637375aa6df0))
-- [x] ~~Button to see results straight on the post~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
-- [ ] Delete your posts with the post command via a button
-- [x] ~~Add comments~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
-- [x] ~~Settings per user~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
-- [ ] Leaderboards by average score
-- [x] ~~Overhaul user command to show more data including an overall score~~ ([facf04e](https://github.com/melmsie/destinyshit/commit/dbdcf8aa60af33577343fb008797d891bc910008))
-- [x] ~~Validate that an actual image was provided and not another file~~ ([036b2fb](https://github.com/melmsie/destinyshit/commit/036b2fbe9c3e0b2ad20e0730847871cad9106b50))
+- [ ] Delete your posts with the post command via a button (Needs extensive testing as to not mess with current data)
+- [ ] Leaderboards
+  - [ ] Average grade
+  - [ ] #'s (such as number of posts, number of comments, number of votes, etc)
+  - [ ] Leaderboard per post type
+  - [ ] Leaderboard of best posts
 - [ ] Hook into Bungie Api
   - [ ] Allow people to choose rolls to show off from their inventory
-  - [ ] Webhook or something when people earn seals or other hard to get achievements
-  - [ ] Fireteam creator/planner
-    - [ ] Schedule events and let Guardians sign up for slots
-    - [ ] When signing up, choose your class and loadout for others to see
+  - [ ] Take a snapshot of someone's fashion from the API directly rather than forcing a screenshot upload
+- [x] ~~Don't allow voting on your own post~~ ([cfb5d16](https://github.com/melmsie/destinyshit/commit/cfb5d168cec00792f26a2179bf36637375aa6df0))
+- [x] ~~Button to see results straight on the post~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
+- [x] ~~Add comments~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
+- [x] ~~Settings per user~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
+- [x] ~~Overhaul user command to show more data including an overall score~~ ([facf04e](https://github.com/melmsie/destinyshit/commit/dbdcf8aa60af33577343fb008797d891bc910008))
+- [x] ~~Validate that an actual image was provided and not another file~~ ([036b2fb](https://github.com/melmsie/destinyshit/commit/036b2fbe9c3e0b2ad20e0730847871cad9106b50))
