@@ -6,8 +6,8 @@ const { Embed } = require('@discordjs/builders');
 module.exports = {
   async run (interaction, client) {
     const data = interaction.options.data[0];
-    const title = interaction.options.data[1].value.substr(0, 200);
-    const desc = interaction.options.data[2].value;
+    const title = interaction.options.data[1]?.value.substr(0, 200);
+    const desc = interaction.options.data[2]?.value;
     if (!data) {
       await interaction.reply({
         embeds: [
