@@ -29,7 +29,7 @@ Ignore Kable, use WSL like a real homie
 - [x] ~~Add comments~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
 - [x] ~~Settings per user~~ ([b3895ff](https://github.com/melmsie/destinyshit/commit/8715849b9b0244ca462207617fbbeeee0eb895da))
 - [ ] Leaderboards by average score
-- [ ] Overhaul user command to show more data including an overall score
+- [x] ~~Overhaul user command to show more data including an overall score~~ ([facf04e](https://github.com/melmsie/destinyshit/commit/dbdcf8aa60af33577343fb008797d891bc910008))
 - [x] ~~Validate that an actual image was provided and not another file~~ ([036b2fb](https://github.com/melmsie/destinyshit/commit/036b2fbe9c3e0b2ad20e0730847871cad9106b50))
 - [ ] Hook into Bungie Api
   - [ ] Allow people to choose rolls to show off from their inventory
