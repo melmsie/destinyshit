@@ -14,7 +14,7 @@ module.exports = {
 
     const focusedValue = interaction.options.getFocused();
 
-    const choices = userData.posts.map(x => `${x.type.toLowerCase()} post (#${x.id}) ${x.title ? `"${x.title.substr(0, 20)}"` : ''}`);
+    const choices = userData.posts.map(x => `${x.type.toLowerCase()} post ${x.title ? `"${x.title.substr(0, 20)}"` : ''} (#${x.id})`);
 
     const filtered = choices.filter(choice => choice.toLowerCase().includes(focusedValue.toLowerCase())).slice(0, 5);
 

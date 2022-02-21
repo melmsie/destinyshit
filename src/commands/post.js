@@ -4,7 +4,7 @@ const functions = new (require('./../utils/functions'))();
 module.exports = {
   async run (interaction, client) {
     const postData = await prisma.post.findUnique({
-      where: { id: Number(interaction.options.data[0].value.split('#')[1]) },
+      where: { id: Number(interaction.options.data[0].value.split('#')[1].slice(0, -1)) },
       include: {
         votes: true,
         comments: true

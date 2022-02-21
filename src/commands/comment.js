@@ -6,7 +6,7 @@ module.exports = {
     const comment = interaction.options.data[1].value;
     let didExistAlready = false;
     const postData = await prisma.post.findUnique({
-      where: { id: Number(postSelection.split('#')[1]) },
+      where: { id: Number(postSelection.split('#')[1].slice(0, -1)) },
       include: {
         comments: true
       }
