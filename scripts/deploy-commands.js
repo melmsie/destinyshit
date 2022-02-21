@@ -4,7 +4,6 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('../config.json');
 
 const commands = [
-  new SlashCommandBuilder().setName('post').setDescription('See results of a specific post or your most recent post')
   new SlashCommandBuilder().setName('post').setDescription('See results of a specific post')
     .addStringOption(option => option.setName('post').setDescription('The post you want to see results from').setAutocomplete(true).setRequired(true)),
 
