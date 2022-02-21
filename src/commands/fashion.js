@@ -72,7 +72,7 @@ module.exports = {
           {
             type: 2,
             label: 'Drop',
-            style: 2,
+            style: 4,
             custom_id: `vote-negative-${postData.id}`
           },
           {
