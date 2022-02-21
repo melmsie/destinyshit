@@ -59,7 +59,9 @@ module.exports = class MiscFunctions {
     if (!votes || votes.length < 1) return 'No votes yet!';
     const numberGrade = Math.round((votes.filter(x => x.approve).length / votes.length) * 100);
     let sentiment = '';
-    if (numberGrade >= 90) {
+    if (numberGrade > 99) {
+      sentiment = 'always positive';
+    } else if (numberGrade >= 90) {
       sentiment = 'overly positive';
     } else if (numberGrade >= 75) {
       sentiment = 'mostly positive';
@@ -69,8 +71,10 @@ module.exports = class MiscFunctions {
       sentiment = 'usually negative';
     } else if (numberGrade >= 10) {
       sentiment = 'mostly negative';
-    } else {
+    } else if (numberGrade >= 1) {
       sentiment = 'overly negative';
+    } else {
+      sentiment = 'always negative';
     }
     return sentiment;
   }
