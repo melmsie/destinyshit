@@ -16,7 +16,7 @@ module.exports = {
 
     const choices = userData.posts.map(x => `${x.type.toLowerCase()} post (#${x.id}) ${x.title ? `"${x.title.substr(0, 20)}"` : ''}`);
 
-    const filtered = choices.filter(choice => choice.includes(focusedValue)).slice(0, 5);
+    const filtered = choices.filter(choice => choice.toLowerCase().includes(focusedValue.toLowerCase())).slice(0, 5);
 
     await interaction.respond(
       filtered.map(choice => ({ name: choice, value: choice }))

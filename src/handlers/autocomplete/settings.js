@@ -10,7 +10,7 @@ module.exports = {
 
     const choices = settings.map(x => `${x.desc} - ${x.name}`);
 
-    const filtered = choices.filter(choice => choice.includes(focusedValue)).slice(0, 10);
+    const filtered = choices.filter(choice.toLowerCase() => choice.includes(focusedValue.toLowerCase())).slice(0, 10);
 
     await interaction.respond(
       filtered.map(choice => ({ name: choice, value: choice }))
