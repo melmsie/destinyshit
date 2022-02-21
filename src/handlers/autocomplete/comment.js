@@ -1,4 +1,5 @@
 const prisma = require('./../../utils/prisma');
+
 module.exports = {
   async handle (interaction, client) {
     const postData = await prisma.post.findMany({
@@ -12,7 +13,12 @@ module.exports = {
 
     const focusedValue = interaction.options.getFocused();
 
-    const choices = postData.map(x => `${x.title ? ` ${x.title.substr(0, 20)}` : `${x.type.toLowerCase()} post`} - #${x.id}`);
+    const choices = [];
+    for (const x of postData) {
+      let userInfo = await client.users.fetch(x.userID);
+      console.log(userInfo);
+      choices.push(`${x.title ? ` ${x.title.substr(0, 20)}` : `Post #${x.id}`} | ${userInfo.username} (${x.type.toLowerCase()})`)
+    }
 
     const filtered = choices.filter(choice => choice.includes(focusedValue)).slice(0, 10);
 
