@@ -50,7 +50,7 @@ module.exports = {
         embeds: [
           embed
             .setTitle(`Post #${postID} Results`)
-            .setDescription(`**\`Author:\`** <@${postData.userID}>\n**\`Posted On:\`** <t:${Math.round(new Date(postData.timestamp).getTime() / 1000)}:D>\n**\`Recent Comment:\`**\n> "${postData.comments.length > 0 ? `${postData.comments[postData.comments.length - 1].value}"` : 'No comments yet'}`)
+            .setDescription(`**\`Author:\`** <@${postData.userID}>\n**\`Posted On:\`** <t:${Math.round(new Date(postData.timestamp).getTime() / 1000)}:D>\n**\`Recent Comment:\`**\n> ${postData.comments.length > 0 ? `"${postData.comments[postData.comments.length - 1].value}"` : 'No comments yet'}`)
             .setThumbnail(postData.image)
             .addField({ name: postData.type === 'WEAPON' ? 'Keep Votes' : 'Drip Votes', value: `${postData.votes.filter(x => x.approve).length}`, inline: true })
             .addField({ name: postData.type === 'WEAPON' ? 'Shard Votes' : 'Drop Votes', value: `${postData.votes.filter(x => !x.approve).length}`, inline: true })
