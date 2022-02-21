@@ -22,9 +22,9 @@ exports.handle = async function (interaction, client) {
       logger.error(error.stack, `User: ${interaction.user.username} (${interaction.user.id}) on ${commandName}`);
     }
   } else if (interaction.isButton()) { // TYPE: Buttons
-    require('./../handlers/button/index').handle(interaction, client);
+    require('./../handlers/button/index').handle(interaction, this);
   } else if (interaction.isAutocomplete()) { // TYPE: Autocomplete
-    require('./../handlers/autocomplete/index').handle(interaction, client);
+    require('./../handlers/autocomplete/index').handle(interaction, this);
   } else { // Other types of interactions like forms and shit
 
   }
