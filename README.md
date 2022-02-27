@@ -25,9 +25,10 @@ Ignore Kable, use WSL like a real homie
 
 - [ ] Delete your posts with the post command via a button (Needs extensive testing as to not mess with current data)
 - [ ] Leaderboards
-  - [ ] Average grade
+  - [x] ~~Average grade~~
   - [ ] #'s (such as number of posts, number of comments, number of votes, etc)
-  - [ ] Leaderboard per post type
+  - [x] ~~Leaderboard per post type~~
+  - [x] ~~Sentiment~~
   - [ ] Leaderboard of best posts
 - [ ] Hook into Bungie Api
   - [ ] Allow people to choose rolls to show off from their inventory
