@@ -52,12 +52,76 @@ module.exports = class MiscFunctions {
   }
 
   /**
+   * @param {Number} number The number of votes to calculate a grade from
+   * @returns {String} Will return a letter grade, or 'oops' if invalid
+   */
+  gradeByNumber (numberGrade) {
+    if (!numberGrade && numberGrade !== 0) return 'No Grade Yet';
+    let letterGrade = '';
+    if (numberGrade >= 97) {
+      letterGrade = 'A+';
+    } else if (numberGrade >= 93) {
+      letterGrade = 'A';
+    } else if (numberGrade >= 90) {
+      letterGrade = 'A-';
+    } else if (numberGrade >= 87) {
+      letterGrade = 'B+';
+    } else if (numberGrade >= 83) {
+      letterGrade = 'B';
+    } else if (numberGrade >= 80) {
+      letterGrade = 'B-';
+    } else if (numberGrade >= 77) {
+      letterGrade = 'C+';
+    } else if (numberGrade >= 73) {
+      letterGrade = 'C';
+    } else if (numberGrade >= 70) {
+      letterGrade = 'C-';
+    } else if (numberGrade >= 67) {
+      letterGrade = 'D+';
+    } else if (numberGrade >= 63) {
+      letterGrade = 'D';
+    } else if (numberGrade >= 60) {
+      letterGrade = 'D-';
+    } else {
+      letterGrade = 'F';
+    }
+    return letterGrade;
+  }
+
+  /**
    * @param {Array} votes The array of votes to calculate a sentiment from
    * @returns {String} Will return a general vote sentiment
    */
   sentiment (votes) {
     if (!votes || votes.length < 1) return 'No votes yet!';
     const numberGrade = Math.round((votes.filter(x => x.approve).length / votes.length) * 100);
+    let sentiment = '';
+    if (numberGrade > 99) {
+      sentiment = 'always positive';
+    } else if (numberGrade >= 90) {
+      sentiment = 'overly positive';
+    } else if (numberGrade >= 75) {
+      sentiment = 'mostly positive';
+    } else if (numberGrade >= 50) {
+      sentiment = 'usually positive';
+    } else if (numberGrade >= 25) {
+      sentiment = 'usually negative';
+    } else if (numberGrade >= 10) {
+      sentiment = 'mostly negative';
+    } else if (numberGrade >= 1) {
+      sentiment = 'overly negative';
+    } else {
+      sentiment = 'always negative';
+    }
+    return sentiment;
+  }
+
+  /**
+   * @param {Number} votes The positivity of votes to calculate a sentiment from
+   * @returns {String} Will return a general vote sentiment
+   */
+  sentimentByNumber (numberGrade) {
+    if (!numberGrade && numberGrade !== 0) return 'No votes yet!';
     let sentiment = '';
     if (numberGrade > 99) {
       sentiment = 'always positive';

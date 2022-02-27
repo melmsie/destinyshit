@@ -31,5 +31,5 @@ exports.handle = async function (interaction, client) {
 };
 
 async function runCommand (command, interaction, client) {
-  require(`./../commands/${command}.js`).run(interaction, client);
+  require(`./../commands/${command}`).run(interaction, client);
 }

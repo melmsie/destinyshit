@@ -15,11 +15,11 @@ module.exports = {
 
     const choices = [];
     for (const x of postData) {
-      let userInfo = await client.users.fetch(x.userID);
-      choices.push(`${x.title ? ` ${x.title.substr(0, 20)}` : `${x.type.toLowerCase()}`} | ${userInfo.username} (Post #${x.id})`)
+      const userInfo = await client.users.fetch(x.userID);
+      choices.push(`${x.title ? ` ${x.title.substr(0, 20)}` : `${x.type.toLowerCase()}`} | ${userInfo.username} (Post #${x.id})`);
     }
 
-    console.log(choices[0])
+    console.log(choices[0]);
 
     const filtered = choices.filter(choice => choice.toLowerCase().includes(focusedValue.toLowerCase())).slice(0, 5);
 

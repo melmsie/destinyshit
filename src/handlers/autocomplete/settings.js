@@ -1,19 +1,16 @@
-const settings = [
-  {
-    name: 'commentAlerts',
-    desc: 'Get a bot DM when you receive a comment on a posts'
-  }
-];
+const settings = {
+  'Comment Alerts': 'commentAlerts' // Alerts when you get a comment
+};
 module.exports = {
   async handle (interaction, client) {
     const focusedValue = interaction.options.getFocused();
 
-    const choices = settings.map(x => `${x.desc} - ${x.name}`);
+    const choices = Object.keys(settings);
 
-    const filtered = choices.filter(choice.toLowerCase() => choice.includes(focusedValue.toLowerCase())).slice(0, 10);
+    const filtered = choices.filter(choice => choice.toLowerCase().includes(focusedValue.toLowerCase())).slice(0, 10);
 
     await interaction.respond(
-      filtered.map(choice => ({ name: choice, value: choice }))
+      filtered.map(choice => ({ name: choice, value: settings[choice] }))
     );
   }
 };

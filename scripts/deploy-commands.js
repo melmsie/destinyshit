@@ -10,6 +10,9 @@ const commands = [
   new SlashCommandBuilder().setName('settings').setDescription('Change settings for yourself')
     .addStringOption(option => option.setName('setting').setDescription('The setting you want to toggle').setAutocomplete(true).setRequired(true)),
 
+  new SlashCommandBuilder().setName('leaderboard').setDescription('See the leaderboards for the server')
+    .addStringOption(option => option.setName('leaderboard').setDescription('The specific leaderboard you want to see').setAutocomplete(true).setRequired(false)),
+
   new SlashCommandBuilder().setName('user').setDescription('See user data')
     .addUserOption(option => option.setName('user').setDescription('The user who you want to see data on').setRequired(false)),
 

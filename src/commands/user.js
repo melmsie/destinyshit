@@ -1,5 +1,4 @@
 const prisma = require('./../utils/prisma');
-const logger = require('pino')();
 const functions = new (require('./../utils/functions'))();
 const { Embed } = require('@discordjs/builders');
 module.exports = {
