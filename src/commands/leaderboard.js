@@ -8,12 +8,20 @@ const leaderboards = {
     title: 'Highest Post Ratings'
   },
   weapons: {
-    desc: 'The users with the highest ratings for weapons',
-    title: 'Highest Weapon Post Ratings'
+    desc: 'The users with the most positive ratings for weapons',
+    title: 'Highest Weapon Post Ratings (Total)'
+  },
+  weaponsRelative: {
+    desc: 'The users with the highest average ratings for weapons',
+    title: 'Highest Weapon Post Ratings (Relative)'
   },
   fashion: {
-    desc: 'The users with the highest ratings for fashion',
-    title: 'Highest Fashion Post Ratings'
+    desc: 'The users with the most positive ratings for fashion',
+    title: 'Highest Fashion Post Ratings (Total)'
+  },
+  fashionRelative: {
+    desc: 'The users with the highest average ratings for fashion',
+    title: 'Highest Fashion Post Ratings (Relative)'
   },
   positiveUsers: {
     desc: 'Users who are the most positive while voting on other posts',
@@ -62,6 +70,7 @@ module.exports = {
       }
     });
     const users = {};
+    const usersPointless = {};
     if (leaderboardChosen === 'positiveUsers') {
       allUsers.filter(x => x.votes.length > 0).forEach(user => {
         users[user.id] = Math.round((user.votes.filter(x => x.approve).length / user.votes.length) * 100);
@@ -85,6 +94,20 @@ module.exports = {
         .join('\n');
       return resolveLeaderboard(interaction, client, leaderboardSorted, leaderboardChosen);
     } else if (leaderboardChosen === 'weapons') {
+      allPosts
+      .filter(x => x.type === 'WEAPON')
+      .filter(x => x.votes.length > 0)
+      .forEach(post => {
+        users[post.userID] ? users[post.userID].push(post.votes.filter(x => x.approve).length) : users[post.userID] = [Math.round(post.votes.filter(x => x.approve).length)];
+      });
+      const leaderboardSorted = Object.entries(users)
+        .map(([id, value]) => ({ id: id, value: value.reduce((a, b) => a + b) }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 10)
+        .map((user, i) => `${positionEmotes[i] || '▫️'} **\`${user.value.toLocaleString()}\`** - <@${user.id}>`)
+        .join('\n');
+      return resolveLeaderboard(interaction, client, leaderboardSorted, leaderboardChosen);
+    } else if (leaderboardChosen === 'weaponsRelative') {
       allPosts.filter(x => x.type === 'WEAPON').filter(x => x.votes.length > 0).forEach(post => {
         users[post.userID] ? users[post.userID].push(Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)) : users[post.userID] = [Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)];
       });
@@ -96,6 +119,20 @@ module.exports = {
         .join('\n');
       return resolveLeaderboard(interaction, client, leaderboardSorted, leaderboardChosen);
     } else if (leaderboardChosen === 'fashion') {
+      allPosts
+      .filter(x => x.type === 'FASHION')
+      .filter(x => x.votes.length > 0)
+      .forEach(post => {
+        users[post.userID] ? users[post.userID].push(post.votes.filter(x => x.approve).length) : users[post.userID] = [Math.round(post.votes.filter(x => x.approve).length)];
+      });
+      const leaderboardSorted = Object.entries(users)
+        .map(([id, value]) => ({ id: id, value: value.reduce((a, b) => a + b) }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 10)
+        .map((user, i) => `${positionEmotes[i] || '▫️'} **\`${user.value.toLocaleString()}\`** - <@${user.id}>`)
+        .join('\n');
+      return resolveLeaderboard(interaction, client, leaderboardSorted, leaderboardChosen);
+    } else if (leaderboardChosen === 'fashionRelative') {
       allPosts.filter(x => x.type === 'FASHION').filter(x => x.votes.length > 0).forEach(post => {
         users[post.userID] ? users[post.userID].push(Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)) : users[post.userID] = [Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)];
       });
@@ -109,14 +146,24 @@ module.exports = {
     } else if (leaderboardChosen === 'overall') {
       allPosts.filter(x => x.votes.length > 0).forEach(post => {
         users[post.userID] ? users[post.userID].push(Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)) : users[post.userID] = [Math.round((post.votes.filter(x => x.approve).length / post.votes.length) * 100)];
+        usersPointless[post.userID] ? usersPointless[post.userID].push(post.votes.filter(x => x.approve).length) : usersPointless[post.userID] = [post.votes.filter(x => x.approve).length];
       });
-      const leaderboardSorted = Object.entries(users)
+      const leaderboardSortedOne = Object.entries(users)
         .map(([id, value]) => ({ id: id, value: Math.round(value.reduce((a, b) => a + b) / value.length) }))
         .sort((a, b) => b.value - a.value)
-        .slice(0, 10)
+        .slice(0, 5)
         .map((user, i) => `${positionEmotes[i] || '▫️'} **\`${functions.gradeByNumber(user.value)}\`** - <@${user.id}> (${user.value}%)`)
         .join('\n');
-      return resolveLeaderboard(interaction, client, leaderboardSorted, leaderboardChosen);
+
+        const leaderboardSortedTwo = Object.entries(usersPointless)
+        .map(([id, value]) => ({ id: id, value: value.reduce((a, b) => a + b) }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 5)
+        .map((user, i) => `${positionEmotes[i] || '▫️'} **\`${user.value.toLocaleString()}\`** - <@${user.id}>`)
+        .join('\n');
+
+        const formatting = `**Top Users (Relative Scores)**\n${leaderboardSortedOne}\n\n**Top Users (Total Scores)**\n${leaderboardSortedTwo}`
+      return resolveLeaderboard(interaction, client, formatting, leaderboardChosen);
     }
   }
 };

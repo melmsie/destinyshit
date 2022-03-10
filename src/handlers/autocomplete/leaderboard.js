@@ -1,7 +1,9 @@
 const leaderboards = {
   'Overall Score': 'overall',
   'Weapon Score': 'weapons',
+  'Weapon Score (Relative)': 'weaponsRelative',
   'Fashion Score': 'fashion',
+  'Fashion Score (Relative)': 'fashionRelative',
   Negativity: 'negativeUsers', // Users with the lowest overall sentiment
   Positivity: 'positiveUsers' // Users with the highest overall sentiment
 };
